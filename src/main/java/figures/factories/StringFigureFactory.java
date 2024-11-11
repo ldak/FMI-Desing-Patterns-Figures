@@ -6,16 +6,17 @@ import utils.FigureReflectionFacade;
 
 
 
-public class StringFigureFactory {
+public class StringFigureFactory implements FigureFactory{
 
     private FigureReflectionFacade figureReflectionFacade;
+    private String input;
 
-    public StringFigureFactory(FigureReflectionFacade figureReflectionFacade) {
+    public StringFigureFactory(String input, FigureReflectionFacade figureReflectionFacade) {
         this.figureReflectionFacade = figureReflectionFacade;
     }
 
-    public Figure createFigure(String input) throws IllegalArgumentException {
-        Pair<String, Double[]> formated_input = formatInput(input);
+    public Figure createFigure() throws IllegalArgumentException {
+        Pair<String, Double[]> formated_input = formatInput(this.input);
         String figureType = formated_input.getKey();
         Double[] params = formated_input.getValue();
 

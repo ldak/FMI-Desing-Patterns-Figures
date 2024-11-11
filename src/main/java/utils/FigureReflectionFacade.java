@@ -1,6 +1,5 @@
 package utils;
 
-import figures.AbstractFigure;
 import figures.Figure;
 import org.reflections.Reflections;
 
@@ -53,5 +52,9 @@ public class FigureReflectionFacade {
             }
         }
         return true;
+    }
+
+    public int getConstructorArgumentCount(Class<? extends Figure> figureClass) {
+        return figureClass.getConstructors()[0].getParameterCount();
     }
 }
