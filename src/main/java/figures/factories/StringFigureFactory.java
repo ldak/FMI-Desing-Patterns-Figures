@@ -10,7 +10,7 @@ public class StringFigureFactory{
 
     private FigureReflectionFacade figureReflectionFacade;
 
-    public StringFigureFactory(String input, FigureReflectionFacade figureReflectionFacade) {
+    public StringFigureFactory(FigureReflectionFacade figureReflectionFacade) {
         this.figureReflectionFacade = figureReflectionFacade;
     }
 
