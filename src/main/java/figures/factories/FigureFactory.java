@@ -2,6 +2,9 @@ package figures.factories;
 
 import figures.Figure;
 
+import java.util.List;
+
 public interface FigureFactory {
-    Figure createFigure();
+
+    List<Figure> createFigures();
 }
