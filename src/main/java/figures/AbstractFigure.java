@@ -1,6 +1,6 @@
 package figures;
 
-abstract class AbstractFigure implements Figure {
+public abstract class AbstractFigure implements Figure {
     @Override
     public Figure clone() {
         try {
