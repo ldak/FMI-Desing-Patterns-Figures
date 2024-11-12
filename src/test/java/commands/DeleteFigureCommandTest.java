@@ -40,4 +40,16 @@ public class DeleteFigureCommandTest {
         assertEquals(1, figures.size());
         assertInstanceOf(Rectangle.class, figures.getFirst());
     }
+
+    @Test
+    public void testExecuteWithInvalidIndex() {
+        List<Figure> figures = new ArrayList<>();
+        figures.add(new Triangle(2, 2, 3));
+        figures.add(new Rectangle(2, 3));
+        DeleteFigureCommand deleteFigureCommand = new DeleteFigureCommand();
+        String simulatedInput = "3\n";
+        Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
+        deleteFigureCommand.execute(figures, sc);
+        assertEquals(2, figures.size());
+    }
 }
