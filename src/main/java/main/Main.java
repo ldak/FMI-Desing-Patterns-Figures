@@ -1,7 +1,16 @@
 package main;
 
+import commands.CommandFactory;
+import figures.factories.FigureFactoryFactory;
+import utils.FigureReflectionFacade;
+import utils.SystemExitHandler;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
+        FigureFactoryFactory figureFactoryFactory = new FigureFactoryFactory(new FigureReflectionFacade());
+
+        CommandLineProgram program = new CommandLineProgram(commandFactory, figureFactoryFactory);
+        program.start();
     }
 }
