@@ -20,11 +20,12 @@ public class CommandLineProgram {
 
     public void start() {
         figures = loadFigures();
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             printMenu();
-            int option = 0; // read option from user
+            int option = scanner.nextInt();
             Command command = commandFactory.getCommand(option);
-            command.execute(figures);
+            command.execute(figures, scanner);
         }
     }
 

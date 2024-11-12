@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import utils.ExitHandler;
 
 import java.util.List;
+import java.util.Scanner;
+
 import static org.mockito.Mockito.*;
 
 public class CloseProgramCommandTest {
@@ -12,7 +14,7 @@ public class CloseProgramCommandTest {
     public void testCloseProgramCommand() {
         ExitHandler mockExitHandler = mock(ExitHandler.class);
         CloseProgramCommand closeProgramCommand = new CloseProgramCommand(mockExitHandler);
-        closeProgramCommand.execute(List.of());
+        closeProgramCommand.execute(List.of(), new Scanner(System.in));
         verify(mockExitHandler).exit(0);
     }
 }
