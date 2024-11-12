@@ -1,6 +1,6 @@
 package figures.factories;
 
-import main.ScannerSingleton;
+import utils.ScannerSingleton;
 import utils.FigureReflectionFacade;
 
 import java.util.Scanner;
@@ -26,6 +26,7 @@ public class FigureFactoryFactory {
 
     private FileFigureFactory getFileFigureFactory() {
         System.out.println("Enter the file path: ");
+        ScannerSingleton.getInstance().nextLine();
         String filePath = ScannerSingleton.getInstance().nextLine();
 
         return new FileFigureFactory(filePath, this.getStringFigureFactory());

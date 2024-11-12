@@ -23,7 +23,7 @@ public class RandomFigureFactory implements FigureFactory {
         int argument_count = this.figureReflectionFacade.getConstructorArgumentCount(randomFigureClass);
         Double[] arguments = new Double[argument_count];
         for (int i = 0; i < argument_count; i++) {
-            arguments[i] = Math.random() * 10 + 20;
+            arguments[i] = (double) ((int)(Math.random() * 100)) / 10 + 20;
         }
         return this.figureReflectionFacade.getFigure(randomFigureClass, arguments);
     }

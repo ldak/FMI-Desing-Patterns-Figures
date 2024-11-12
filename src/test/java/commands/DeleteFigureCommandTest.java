@@ -3,7 +3,7 @@ package commands;
 import figures.Figure;
 import figures.Rectangle;
 import figures.Triangle;
-import main.ScannerSingleton;
+import utils.ScannerSingleton;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;

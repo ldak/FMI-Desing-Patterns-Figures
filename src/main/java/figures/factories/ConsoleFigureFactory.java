@@ -1,7 +1,7 @@
 package figures.factories;
 
 import figures.Figure;
-import main.ScannerSingleton;
+import utils.ScannerSingleton;
 import utils.FigureReflectionFacade;
 
 import java.util.ArrayList;
@@ -25,7 +25,6 @@ public class ConsoleFigureFactory implements FigureFactory {
             printMenu();
             String option = sc.nextLine();
             if (option.equals("exit")) {
-                sc.close();
                 return figures;
             }
 

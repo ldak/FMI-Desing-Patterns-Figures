@@ -1,6 +1,6 @@
 package figures.factories;
 
-import main.ScannerSingleton;
+import utils.ScannerSingleton;
 import org.junit.jupiter.api.Test;
 import utils.FigureReflectionFacade;
 

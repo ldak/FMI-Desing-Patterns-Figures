@@ -4,9 +4,9 @@ import commands.Command;
 import commands.CommandFactory;
 import figures.Figure;
 import figures.factories.FigureFactoryFactory;
+import utils.ScannerSingleton;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class CommandLineProgram {
     private List<Figure> figures;
@@ -46,8 +46,8 @@ public class CommandLineProgram {
             for (String factoryDescription : figureFactoryFactory.getOptionDescriptions()) {
                 System.out.println(factoryDescription);
             }
-            int option = ScannerSingleton.getInstance().nextInt();
             try {
+                int option = ScannerSingleton.getInstance().nextInt();
                 return figureFactoryFactory.getFactory(option).createFigures();
             } catch (Exception e) {
                 System.out.println("Invalid option. Try again.");

@@ -1,24 +1,24 @@
 package commands;
 
 import figures.Figure;
-import main.ScannerSingleton;
+import utils.ScannerSingleton;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Scanner;
 
 public class StoreIntoFileCommand implements Command{
     @Override
     public void execute(List<Figure> figures) {
         System.out.println("Enter the file name: ");
+        ScannerSingleton.getInstance().nextLine();
         String fileName = ScannerSingleton.getInstance().nextLine();
 
         File file = new File(fileName);
         if (file.exists()) {
             System.out.println("File already exists. Do you want to overwrite it? (y/n)");
-            String answer = ScannerSingleton.getInstance().nextLine();
+            String answer = ScannerSingleton.getInstance().next();
             if (!answer.equals("y")) {
                 return;
             }
