@@ -30,6 +30,7 @@ public class FileFigureFactory implements FigureFactory {
                 Figure figure = stringFigureFactory.createFigure(line);
                 figures.add(figure);
             }
+            scanner.close();
             return figures;
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

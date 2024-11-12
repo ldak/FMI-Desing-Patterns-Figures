@@ -5,7 +5,7 @@ public class CommandFactory {
         return null;
     }
 
-    public String[] getCommandOptionsDescriptions() {
+    public String[] getOptionDescriptions() {
         return null;
     }
 }

@@ -24,6 +24,7 @@ public class ConsoleFigureFactory implements FigureFactory {
             printMenu();
             String option = sc.nextLine();
             if (option.equals("exit")) {
+                sc.close();
                 return figures;
             }
 
