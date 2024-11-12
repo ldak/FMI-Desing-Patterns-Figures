@@ -20,12 +20,16 @@ public class CommandLineProgram {
 
     public void start() {
         figures = loadFigures();
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             printMenu();
-            int option = scanner.nextInt();
-            Command command = commandFactory.getCommand(option);
-            command.execute(figures, scanner);
+            try {
+                int option = ScannerSingleton.getInstance().nextInt();
+                Command command = commandFactory.getCommand(option);
+                command.execute(figures);
+            } catch (Exception e) {
+                System.out.println("Invalid option. Try again.");
+            }
+
         }
     }
 
@@ -37,17 +41,14 @@ public class CommandLineProgram {
     }
 
     private List<Figure> loadFigures() {
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Choose how to load figures:");
             for (String factoryDescription : figureFactoryFactory.getOptionDescriptions()) {
                 System.out.println(factoryDescription);
             }
-            int option = scanner.nextInt();
+            int option = ScannerSingleton.getInstance().nextInt();
             try {
-                List<Figure> figures = figureFactoryFactory.getFactory(option).createFigures();
-                scanner.close();
-                return figures;
+                return figureFactoryFactory.getFactory(option).createFigures();
             } catch (Exception e) {
                 System.out.println("Invalid option. Try again.");
             }

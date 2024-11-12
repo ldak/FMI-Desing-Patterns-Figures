@@ -1,15 +1,16 @@
 package commands;
 
 import figures.Figure;
+import main.ScannerSingleton;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class DuplicateFigureCommand implements Command{
     @Override
-    public void execute(List<Figure> figures, Scanner scanner) {
+    public void execute(List<Figure> figures) {
         System.out.println("Enter the index of the figure you want to duplicate:");
-        int index = scanner.nextInt();
+        int index = ScannerSingleton.getInstance().nextInt();
         if (index < 1 || index > figures.size()) {
             System.out.println("Invalid index");
             return;

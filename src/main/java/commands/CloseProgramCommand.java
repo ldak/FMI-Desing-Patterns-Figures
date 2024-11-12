@@ -1,6 +1,7 @@
 package commands;
 
 import figures.Figure;
+import main.ScannerSingleton;
 import utils.ExitHandler;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class CloseProgramCommand implements Command{
     }
 
     @Override
-    public void execute(List<Figure> figures, Scanner scanner) {
-        scanner.close();
+    public void execute(List<Figure> figures) {
+        ScannerSingleton.close();
         this.exitHandler.exit(0);
     }
 }

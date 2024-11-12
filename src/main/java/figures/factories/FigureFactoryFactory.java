@@ -1,5 +1,6 @@
 package figures.factories;
 
+import main.ScannerSingleton;
 import utils.FigureReflectionFacade;
 
 import java.util.Scanner;
@@ -24,19 +25,15 @@ public class FigureFactoryFactory {
     }
 
     private FileFigureFactory getFileFigureFactory() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the file path: ");
-        String filePath = scanner.nextLine();
-        scanner.close();
+        String filePath = ScannerSingleton.getInstance().nextLine();
 
         return new FileFigureFactory(filePath, this.getStringFigureFactory());
     }
 
     private RandomFigureFactory getRandomFigureFactory() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the number of figures to create: ");
-        int numberOfFigures = scanner.nextInt();
-        scanner.close();
+        int numberOfFigures = ScannerSingleton.getInstance().nextInt();
 
         return new RandomFigureFactory(numberOfFigures, this.figureReflectionFacade);
     }

@@ -1,9 +1,11 @@
 package figures.factories;
 
+import main.ScannerSingleton;
 import org.junit.jupiter.api.Test;
 import utils.FigureReflectionFacade;
 
 import java.io.ByteArrayInputStream;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
@@ -12,8 +14,8 @@ public class FigureFactoryFactoryTest {
     @Test
     public void testGetRandomFigureFactory() {
         String simulatedInput = "6\n";
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-
+        Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
+        ScannerSingleton.setInstance(sc);
         FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
         FigureFactory figureFactory = factory.getFactory(1);
         assertInstanceOf(RandomFigureFactory.class, figureFactory);

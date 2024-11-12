@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ListAllCommand implements Command{
     @Override
-    public void execute(List<Figure> figures, Scanner scanner) {
+    public void execute(List<Figure> figures) {
         if(figures.isEmpty()){
             System.out.println("No figures to show");
             return;

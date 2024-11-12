@@ -3,6 +3,7 @@ package commands;
 import figures.Figure;
 import figures.Rectangle;
 import figures.Triangle;
+import main.ScannerSingleton;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -23,7 +24,8 @@ public class DeleteFigureCommandTest {
         DeleteFigureCommand deleteFigureCommand = new DeleteFigureCommand();
         String simulatedInput = "2\n";
         Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
-        deleteFigureCommand.execute(figures, sc);
+        ScannerSingleton.setInstance(sc);
+        deleteFigureCommand.execute(figures);
         assertEquals(1, figures.size());
         assertInstanceOf(Triangle.class, figures.getFirst());
     }
@@ -36,7 +38,8 @@ public class DeleteFigureCommandTest {
         DeleteFigureCommand deleteFigureCommand = new DeleteFigureCommand();
         String simulatedInput = "1\n";
         Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
-        deleteFigureCommand.execute(figures, sc);
+        ScannerSingleton.setInstance(sc);
+        deleteFigureCommand.execute(figures);
         assertEquals(1, figures.size());
         assertInstanceOf(Rectangle.class, figures.getFirst());
     }
@@ -49,7 +52,8 @@ public class DeleteFigureCommandTest {
         DeleteFigureCommand deleteFigureCommand = new DeleteFigureCommand();
         String simulatedInput = "3\n";
         Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
-        deleteFigureCommand.execute(figures, sc);
+        ScannerSingleton.setInstance(sc);
+        deleteFigureCommand.execute(figures);
         assertEquals(2, figures.size());
     }
 }

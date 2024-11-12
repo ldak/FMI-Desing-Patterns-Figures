@@ -3,6 +3,7 @@ package commands;
 import figures.Figure;
 import figures.Rectangle;
 import figures.Triangle;
+import main.ScannerSingleton;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -21,7 +22,9 @@ public class DuplicateFigureCommandTest {
         DuplicateFigureCommand duplicateFigureCommand = new DuplicateFigureCommand();
         String simulatedInput = "1\n";
         Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
-        duplicateFigureCommand.execute(figures, sc);
+        ScannerSingleton.setInstance(sc);
+
+        duplicateFigureCommand.execute(figures);
         assertEquals(2, figures.size());
         assertInstanceOf(Triangle.class, figures.get(1));
     }
@@ -33,7 +36,8 @@ public class DuplicateFigureCommandTest {
         DuplicateFigureCommand duplicateFigureCommand = new DuplicateFigureCommand();
         String simulatedInput = "2\n";
         Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
-        duplicateFigureCommand.execute(figures, sc);
+        ScannerSingleton.setInstance(sc);
+        duplicateFigureCommand.execute(figures);
         assertEquals(1, figures.size());
     }
 }

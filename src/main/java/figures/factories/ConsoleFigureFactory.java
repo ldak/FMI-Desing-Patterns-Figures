@@ -1,6 +1,7 @@
 package figures.factories;
 
 import figures.Figure;
+import main.ScannerSingleton;
 import utils.FigureReflectionFacade;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class ConsoleFigureFactory implements FigureFactory {
 
     @Override
     public List<Figure> createFigures() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = ScannerSingleton.getInstance();
         List<Figure> figures = new ArrayList<>();
         while (true) {
             printMenu();

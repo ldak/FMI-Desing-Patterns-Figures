@@ -14,7 +14,7 @@ public class CloseProgramCommandTest {
     public void testCloseProgramCommand() {
         ExitHandler mockExitHandler = mock(ExitHandler.class);
         CloseProgramCommand closeProgramCommand = new CloseProgramCommand(mockExitHandler);
-        closeProgramCommand.execute(List.of(), new Scanner(System.in));
+        closeProgramCommand.execute(List.of());
         verify(mockExitHandler).exit(0);
     }
 }
