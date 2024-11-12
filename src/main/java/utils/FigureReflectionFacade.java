@@ -16,13 +16,27 @@ public class FigureReflectionFacade {
                 .orElseThrow(() -> new IllegalArgumentException("Unknown figure type: " + figureType));
     }
 
+    private Set<Class<? extends Figure>> figureClasses;
+
     public Set<Class<? extends Figure>> getFigureClasses() {
+        if (this.figureClasses != null) {
+            return this.figureClasses;
+        }
+
         Reflections reflections = new Reflections("figures");
 
         // Get all subclasses of your target class
         Set<Class<? extends Figure>> subclasses = reflections.getSubTypesOf(Figure.class);
         subclasses.removeIf(subclass -> Modifier.isAbstract(subclass.getModifiers()));
+        this.figureClasses = subclasses;
+
         return subclasses;
+    }
+
+    public String[] getFigureNames() {
+        return this.getFigureClasses().stream()
+                .map(Class::getSimpleName)
+                .toArray(String[]::new);
     }
 
     public Figure getFigure(Class<? extends Figure> figureClass, Double[] params) {
