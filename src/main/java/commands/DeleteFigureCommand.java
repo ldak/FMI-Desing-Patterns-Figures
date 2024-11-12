@@ -18,7 +18,7 @@ public class DeleteFigureCommand implements Command{
             figures.remove(i - 1);
         }catch (Exception e){
             System.out.println("Invalid figure index");
-            return;
+            ScannerSingleton.getInstance().nextLine();
         }
     }
 }

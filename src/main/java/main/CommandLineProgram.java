@@ -7,6 +7,7 @@ import figures.factories.FigureFactoryFactory;
 import utils.ScannerSingleton;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class CommandLineProgram {
     private List<Figure> figures;
@@ -28,6 +29,7 @@ public class CommandLineProgram {
                 command.execute(figures);
             } catch (Exception e) {
                 System.out.println("Invalid option. Try again.");
+                ScannerSingleton.getInstance().nextLine();
             }
 
         }
@@ -51,6 +53,7 @@ public class CommandLineProgram {
                 return figureFactoryFactory.getFactory(option).createFigures();
             } catch (Exception e) {
                 System.out.println("Invalid option. Try again.");
+                ScannerSingleton.getInstance().nextLine();
             }
         }
     }

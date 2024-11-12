@@ -20,7 +20,7 @@ public class DuplicateFigureCommand implements Command{
             figures.add(duplicate);
         }catch (Exception e){
             System.out.println("Invalid index");
-            return;
+            ScannerSingleton.getInstance().nextLine();
         }
 
     }
