@@ -35,13 +35,13 @@ public class TriangleTest {
     @Test
     void testDoubleOverflowValidation() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Triangle triangle = new Triangle(Double.MAX_VALUE, 2, 3);
+            Triangle triangle = new Triangle(Double.MAX_VALUE, Double.MAX_VALUE, 3);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            Triangle triangle = new Triangle(3, Double.MAX_VALUE, 1);
+            Triangle triangle = new Triangle(3, Double.MAX_VALUE, Double.MAX_VALUE);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            Triangle triangle = new Triangle(1, 3, Double.MAX_VALUE);
+            Triangle triangle = new Triangle(Double.MAX_VALUE, 3, Double.MAX_VALUE);
         });
     }
 

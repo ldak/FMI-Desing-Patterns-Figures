@@ -7,7 +7,7 @@ import utils.FigureReflectionFacade;
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FigureFactoryFactoryTest {
 
@@ -30,11 +30,28 @@ public class FigureFactoryFactoryTest {
 
     @Test
     public void testGetFileFigureFactory() {
-        String simulatedInput = "src/test/resources/figure1.txt\n";
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+        String simulatedInput = "\nsrc/test/resources/figure1.txt\n";
+        Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
+        ScannerSingleton.setInstance(sc);
 
         FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
         FigureFactory figureFactory = factory.getFactory(3);
         assertInstanceOf(FileFigureFactory.class, figureFactory);
+    }
+
+    @Test
+    public void testInvalidOption() {
+        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            factory.getFactory(4);
+        });
+    }
+
+    @Test
+    public void testGetOptionDescriptions() {
+        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
+        String[] descriptions = factory.getOptionDescriptions();
+        assertEquals(3, descriptions.length);
     }
 }

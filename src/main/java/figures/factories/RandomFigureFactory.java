@@ -16,7 +16,7 @@ public class RandomFigureFactory implements FigureFactory {
         this.count = count;
     }
 
-    public Figure createFigure() {
+    private Figure createFigure() {
         Set<Class<? extends Figure>> figureClasses = this.figureReflectionFacade.getFigureClasses();
         int randomIndex = (int) (Math.random() * figureClasses.size());
         Class<? extends Figure> randomFigureClass = (Class<? extends Figure>) figureClasses.toArray()[randomIndex];

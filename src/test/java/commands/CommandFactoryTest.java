@@ -3,8 +3,7 @@ package commands;
 import org.junit.jupiter.api.Test;
 import utils.SystemExitHandler;
 
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CommandFactoryTest {
 
@@ -53,5 +52,12 @@ public class CommandFactoryTest {
     public void testCreateInvalidOptionNegative() {
         CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
         assertThrows(IllegalArgumentException.class, () -> commandFactory.getCommand(-1));
+    }
+
+    @Test
+    public void testGetDescriptions() {
+        CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
+        String[] descriptions = commandFactory.getOptionDescriptions();
+        assertEquals(5, descriptions.length);
     }
 }
