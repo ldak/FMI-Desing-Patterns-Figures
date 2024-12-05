@@ -3,13 +3,17 @@ package figures.factories;
 import utils.ScannerSingleton;
 import utils.FigureReflectionFacade;
 
+import java.util.Random;
 import java.util.Scanner;
+import java.util.random.RandomGenerator;
 
 public class FigureFactoryFactory {
-    private FigureReflectionFacade figureReflectionFacade;
+    private final FigureReflectionFacade figureReflectionFacade;
+    private final RandomGenerator randomGenerator;
 
-    public FigureFactoryFactory(FigureReflectionFacade figureReflectionFacade) {
+    public FigureFactoryFactory(FigureReflectionFacade figureReflectionFacade, RandomGenerator randomGenerator) {
         this.figureReflectionFacade = figureReflectionFacade;
+        this.randomGenerator = randomGenerator;
     }
 
     public FigureFactory getFactory(int option) {
@@ -36,7 +40,7 @@ public class FigureFactoryFactory {
         System.out.println("Enter the number of figures to create: ");
         int numberOfFigures = ScannerSingleton.getInstance().nextInt();
 
-        return new RandomFigureFactory(numberOfFigures, this.figureReflectionFacade);
+        return new RandomFigureFactory(numberOfFigures, this.figureReflectionFacade, this.randomGenerator);
     }
 
     private StringFigureFactory getStringFigureFactory() {

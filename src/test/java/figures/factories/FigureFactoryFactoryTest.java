@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import utils.FigureReflectionFacade;
 
 import java.io.ByteArrayInputStream;
+import java.util.Random;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,14 +17,14 @@ public class FigureFactoryFactoryTest {
         String simulatedInput = "6\n";
         Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
         ScannerSingleton.setInstance(sc);
-        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
+        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
         FigureFactory figureFactory = factory.getFactory(1);
         assertInstanceOf(RandomFigureFactory.class, figureFactory);
     }
 
     @Test
     public void testGetConsoleFigureFactory() {
-        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
+        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
         FigureFactory figureFactory = factory.getFactory(2);
         assertInstanceOf(ConsoleFigureFactory.class, figureFactory);
     }
@@ -34,14 +35,14 @@ public class FigureFactoryFactoryTest {
         Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
         ScannerSingleton.setInstance(sc);
 
-        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
+        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
         FigureFactory figureFactory = factory.getFactory(3);
         assertInstanceOf(FileFigureFactory.class, figureFactory);
     }
 
     @Test
     public void testInvalidOption() {
-        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
+        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
 
         assertThrows(IllegalArgumentException.class, () -> {
             factory.getFactory(4);
@@ -50,7 +51,7 @@ public class FigureFactoryFactoryTest {
 
     @Test
     public void testGetOptionDescriptions() {
-        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade());
+        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
         String[] descriptions = factory.getOptionDescriptions();
         assertEquals(3, descriptions.length);
     }
