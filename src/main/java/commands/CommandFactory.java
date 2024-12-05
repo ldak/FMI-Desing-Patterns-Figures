@@ -2,6 +2,9 @@ package commands;
 
 import utils.ExitHandler;
 
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 public class CommandFactory {
     private ExitHandler exitHandler;
 
@@ -9,29 +12,29 @@ public class CommandFactory {
         this.exitHandler = exitHandler;
     }
 
-    public Command getCommand(int option) {
+    public Command getCommand(CommandOptionsEnum option) {
         switch (option) {
-            case 1:
+            case LIST_ALL:
                 return new ListAllCommand();
-            case 2:
+            case DUPLICATE:
                 return new DuplicateFigureCommand();
-            case 3:
+            case DELETE:
                 return new DeleteFigureCommand();
-            case 4:
+            case STORE_IN_FILE:
                 return new StoreIntoFileCommand();
-            case 5:
+            case EXIT:
                 return new CloseProgramCommand(this.exitHandler);
         }
         throw new IllegalArgumentException("Invalid option");
     }
 
-    public String[] getOptionDescriptions() {
-        return new String[] {
-            "1. List all figures",
-            "2. Duplicate a figure",
-            "3. Delete a figure",
-            "4. Store figures into a file",
-            "5. Close the program"
-        };
+    public SortedMap<CommandOptionsEnum, String> getOptionDescriptions() {
+        return new TreeMap<>() {{
+            put(CommandOptionsEnum.LIST_ALL, "List all figures");
+            put(CommandOptionsEnum.DUPLICATE, "Duplicate a figure");
+            put(CommandOptionsEnum.DELETE, "Delete a figure");
+            put(CommandOptionsEnum.STORE_IN_FILE, "Store figures into a file");
+            put(CommandOptionsEnum.EXIT, "Close the program");
+        }};
     }
 }

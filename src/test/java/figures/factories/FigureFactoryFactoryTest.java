@@ -7,6 +7,7 @@ import utils.FigureReflectionFacade;
 import java.io.ByteArrayInputStream;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.SortedMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,14 +19,14 @@ public class FigureFactoryFactoryTest {
         Scanner sc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
         ScannerSingleton.setInstance(sc);
         FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
-        FigureFactory figureFactory = factory.getFactory(1);
+        FigureFactory figureFactory = factory.getFactory(FigureFactoryOptionsEnum.RANDOM_FIGURE_FACTORY);
         assertInstanceOf(RandomFigureFactory.class, figureFactory);
     }
 
     @Test
     public void testGetConsoleFigureFactory() {
         FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
-        FigureFactory figureFactory = factory.getFactory(2);
+        FigureFactory figureFactory = factory.getFactory(FigureFactoryOptionsEnum.CONSOLE_FIGURE_FACTORY);
         assertInstanceOf(ConsoleFigureFactory.class, figureFactory);
     }
 
@@ -36,23 +37,14 @@ public class FigureFactoryFactoryTest {
         ScannerSingleton.setInstance(sc);
 
         FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
-        FigureFactory figureFactory = factory.getFactory(3);
+        FigureFactory figureFactory = factory.getFactory(FigureFactoryOptionsEnum.FILE_FIGURE_FACTORY);
         assertInstanceOf(FileFigureFactory.class, figureFactory);
-    }
-
-    @Test
-    public void testInvalidOption() {
-        FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            factory.getFactory(4);
-        });
     }
 
     @Test
     public void testGetOptionDescriptions() {
         FigureFactoryFactory factory = new FigureFactoryFactory(new FigureReflectionFacade(), new Random());
-        String[] descriptions = factory.getOptionDescriptions();
-        assertEquals(3, descriptions.length);
+        SortedMap<FigureFactoryOptionsEnum, String> options = factory.getOptionDescriptions();
+        assertEquals(3, options.size());
     }
 }

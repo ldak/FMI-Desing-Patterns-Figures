@@ -3,6 +3,8 @@ package commands;
 import org.junit.jupiter.api.Test;
 import utils.SystemExitHandler;
 
+import java.util.SortedMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CommandFactoryTest {
@@ -10,54 +12,42 @@ public class CommandFactoryTest {
     @Test
     public void testCreateCloseProgramCommand() {
         CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
-        Command command = commandFactory.getCommand(5);
+        Command command = commandFactory.getCommand(CommandOptionsEnum.EXIT);
         assertInstanceOf(CloseProgramCommand.class, command);
     }
 
     @Test
     public void testCreateListAllCommand() {
         CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
-        Command command = commandFactory.getCommand(1);
+        Command command = commandFactory.getCommand(CommandOptionsEnum.LIST_ALL);
         assertInstanceOf(ListAllCommand.class, command);
     }
 
     @Test
     public void testCreateDuplicateFigureCommand() {
         CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
-        Command command = commandFactory.getCommand(2);
+        Command command = commandFactory.getCommand(CommandOptionsEnum.DUPLICATE);
         assertInstanceOf(DuplicateFigureCommand.class, command);
     }
 
     @Test
     public void testCreateDeleteFigureCommand() {
         CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
-        Command command = commandFactory.getCommand(3);
+        Command command = commandFactory.getCommand(CommandOptionsEnum.DELETE);
         assertInstanceOf(DeleteFigureCommand.class, command);
     }
 
     @Test
     public void testCreateStoreIntoFileCommand() {
         CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
-        Command command = commandFactory.getCommand(4);
+        Command command = commandFactory.getCommand(CommandOptionsEnum.STORE_IN_FILE);
         assertInstanceOf(StoreIntoFileCommand.class, command);
-    }
-
-    @Test
-    public void testCreateInvalidOption() {
-        CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
-        assertThrows(IllegalArgumentException.class, () -> commandFactory.getCommand(6));
-    }
-
-    @Test
-    public void testCreateInvalidOptionNegative() {
-        CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
-        assertThrows(IllegalArgumentException.class, () -> commandFactory.getCommand(-1));
     }
 
     @Test
     public void testGetDescriptions() {
         CommandFactory commandFactory = new CommandFactory(new SystemExitHandler());
-        String[] descriptions = commandFactory.getOptionDescriptions();
-        assertEquals(5, descriptions.length);
+        SortedMap<CommandOptionsEnum, String> descriptions = commandFactory.getOptionDescriptions();
+        assertEquals(5, descriptions.size());
     }
 }

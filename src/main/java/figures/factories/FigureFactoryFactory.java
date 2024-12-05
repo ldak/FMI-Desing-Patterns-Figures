@@ -3,8 +3,7 @@ package figures.factories;
 import utils.ScannerSingleton;
 import utils.FigureReflectionFacade;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.random.RandomGenerator;
 
 public class FigureFactoryFactory {
@@ -16,13 +15,13 @@ public class FigureFactoryFactory {
         this.randomGenerator = randomGenerator;
     }
 
-    public FigureFactory getFactory(int option) {
+    public FigureFactory getFactory(FigureFactoryOptionsEnum option) {
         switch (option) {
-            case 1:
+            case RANDOM_FIGURE_FACTORY:
                return getRandomFigureFactory();
-            case 2:
+            case CONSOLE_FIGURE_FACTORY:
                 return new ConsoleFigureFactory(this.figureReflectionFacade, this.getStringFigureFactory());
-            case 3:
+            case FILE_FIGURE_FACTORY:
                 return getFileFigureFactory();
         }
         throw new IllegalArgumentException("Invalid option");
@@ -47,11 +46,11 @@ public class FigureFactoryFactory {
         return new StringFigureFactory(this.figureReflectionFacade);
     }
 
-    public String[] getOptionDescriptions() {
-        return new String[] {
-            "1. For creating figures with random values",
-            "2. For creating figures with user input values",
-            "3. For reading figures from a file",
-        };
+    public SortedMap<FigureFactoryOptionsEnum, String> getOptionDescriptions() {
+        return new TreeMap<>() {{
+            put(FigureFactoryOptionsEnum.RANDOM_FIGURE_FACTORY, "For creating figures with random values");
+            put(FigureFactoryOptionsEnum.CONSOLE_FIGURE_FACTORY, "For creating figures with user input values");
+            put(FigureFactoryOptionsEnum.FILE_FIGURE_FACTORY, "For reading figures from a file");
+        }};
     }
 }
